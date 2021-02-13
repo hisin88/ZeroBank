@@ -39,5 +39,21 @@ public class loginStepDefs {
         Assert.assertTrue(actualName.contains(expectedName));
     }
 
+    @When("the user enters the invalid user {string}")
+    public void the_user_enters_the_invalid_user(String name) {
+        new LoginPage().name.sendKeys(name);
+    }
+
+    @When("the user enters the invalid passwords {string}")
+    public void the_user_enters_the_invalid_passwords(String pass) {
+        new LoginPage().pass.sendKeys(pass);
+        new LoginPage().button.click();
+        BrowserUtils.waitFor(1);
+    }
+
+    @Then("the UnAuthorized user should not be able to login")
+    public void the_UnAuthorized_user_should_not_be_able_to_login() {
+        Assert.assertTrue(new LoginPage().loginAlert.isDisplayed());
+    }
 
 }

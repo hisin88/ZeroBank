@@ -24,6 +24,9 @@ public class LoginPage {
     @FindBy(xpath = "//input[@type='submit']")
     public WebElement button;
 
+    @FindBy(xpath = "//div[@class='alert alert-error']")
+    public WebElement loginAlert;
+
     public void login(String Uname){
         name.sendKeys(ConfigurationReader.get(Uname));
         String Upass = Uname+"_password";
