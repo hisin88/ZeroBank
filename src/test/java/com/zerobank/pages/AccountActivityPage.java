@@ -31,6 +31,18 @@ public class AccountActivityPage extends BasePage{
     @FindBy (id = "aa_type")
     public WebElement type;
 
+    @FindBy (id = "aa_accountId")
+    public WebElement showTransactionsAccount;
+
+    public List<WebElement> accountOptions(){
+    Select accountsDropDown = new Select(showTransactionsAccount);
+    List<WebElement> options = accountsDropDown.getOptions();
+    return options;
+    }
+
+    @FindBy (xpath = "//thead/tr/th")
+    public List<WebElement> accountColumnNames;
+
     public int[] numberedDate (String str){
         String [] date = str.split("-");
         int [] Date = new int[3];
@@ -93,7 +105,7 @@ String dateString = Driver.get().findElement(By.xpath("(//table[@class='table ta
             String locator = "(//table[@class='table table-condensed table-hover'])[2]/tbody/tr["+i+"]/td["+column+"]";
             check+=Driver.get().findElement(By.xpath(locator)).getText();
         }
-        return check.isBlank();
+        return check.isEmpty();
   }
   public void selectType (String selection){
       Select typeSelect = new Select(type);

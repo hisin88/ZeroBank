@@ -1,4 +1,4 @@
-@wip
+
 Feature: Navigating to specific accounts in Accounts Activity
 Background:
 Given the user is on the login page
